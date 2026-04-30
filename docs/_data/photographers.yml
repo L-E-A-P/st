@@ -1,8 +1,0 @@
-# Anagrafica fotografi/autori. La chiave (es. "giuseppe") è un id usato nei post
-# nel campo `credits:` per attribuire ogni immagine al rispettivo autore.
-giuseppe:
-  name: "Giuseppe Silvi"
-  url: "https://www.leaphz.net/giuseppe/"
-
-tbd:
-  name: "Autore da identificare"

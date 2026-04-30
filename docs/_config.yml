@@ -15,7 +15,7 @@ skin: "/assets/css/skins/dark.css"
 # Site identity
 locale: it-IT
 title: "ST"
-description: "Strumenti d'invenzione del lavoro tetraedrico"
+description: "Sferico Tetraedrico"
 baseurl: "/st"
 url: "https://www.leaphz.net"
 logo: /images/gs.jpg
