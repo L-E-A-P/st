@@ -1,102 +1,171 @@
-<<<<<<< HEAD
-# STONE
-Spherical Tetrahedral ONE - A-Format Loudspeaker for omni-directional point of listening.
+# ST — Sferico Tetraedrico
 
-### ITA
-**S.T.ONE** è uno strumento elettroacustico per la riproduzione di forme sonore tridimensionali. La struttura tetraedrica composta di quattro facce triangolari permette l'irradiazione sferica dei suoni nello spazio in maniera omnidirezionale. A differenza dei comuni sistemi di diffusione acustica del suono, S.T.ONE permette di descrivere forme nello spazio con caratteristiche proprie, fornendo alla composizione elettroacustica parametri di controllo sulla direzione di propagazione, così come accade per gli strumenti acustici tradizionali.
+Sito-satellite di [`leap/giuseppe`](https://github.com/l-e-a-p/giuseppe) dedicato
+agli **strumenti d'invenzione del lavoro tetraedrico**: STONE, ston3s, tetrarec,
+plugin e prototipi sviluppati nel contesto di **LEAP** (_Laboratorio
+ElettroAcustico Permanente_).
 
-**S.T.ONE** è sviluppato nell'ambito della ricerca musicale sull'integrazione tra strumento acustico ed elettronica, dove l'equilibrio tra le parti non si gioca solo sul piano dinamico ma, soprattutto, su quello della forma sonora in relazione ai moti propri di propagazione, su velocità e direzione che i suoni acquisiscono, in relazione alla sorgente ed allo spazio che la circonda.
-=======
-# ST
+Online: <https://www.leaphz.net/st/>
 
+---
 
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Struttura del repo
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/giuseppesilvi/st.git
-git branch -M main
-git push -uf origin main
+st/
+├── _grezzo/        archivio sorgente (raw originali, fuori dalla build Jekyll)
+│   └── img/        foto eventi, cartella per evento (es. 2023-09-10-CASA-ARGILLA-PELANDA/)
+├── docs/           sito Jekyll (deploy GitHub Pages da /docs)
+├── src/            script e codice di gestione del repo
+└── ref/            riferimenti, bibliografia, materiale di studio
 ```
 
-## Integrate with your tools
+`_grezzo/` è la **quarantena**: contiene le sorgenti originali (HEIC pesanti,
+documenti, ecc.). Niente di quanto sta lì dentro viene servito dal sito; le
+versioni web-ready vivono in `docs/assets/`.
 
-- [ ] [Set up project integrations](https://gitlab.com/giuseppesilvi/st/-/settings/integrations)
+---
 
-## Collaborate with your team
+## Sito Jekyll (`docs/`)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+```
+docs/
+├── _config.yml
+├── _includes/
+│   └── gallery.html        include riusabile per gallerie con lightbox
+├── _data/
+│   ├── authors.yml         anagrafica autori (chiave → metadata)
+│   └── navigation.yml      voci della navbar
+├── _posts/                 post (gallerie, note, articoli)
+├── _stone/ _stoned/ _tetrarec/   collection una per progetto-strumento
+├── assets/img/eventi/      gallerie pubblicate, una sottocartella per evento
+└── index.md                home (layout: blog, lista post in coda)
+```
 
-## Test and Deploy
+### Sviluppo locale
 
-Use the built-in continuous integration in GitLab.
+```bash
+cd docs
+bundle install       # solo la prima volta
+bundle exec jekyll serve
+# → http://localhost:4000/st/
+```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### Deploy
 
-***
+GitHub Pages è configurato su **branch `master`, folder `/docs`**.
+Ogni `git push` ribuilda automaticamente. Il `baseurl` è `/st`.
 
-# Editing this README
+---
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## Gestione foto e gallerie
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### Convenzione
 
-## Name
-Choose a self-explaining name for your project.
+Una **cartella per evento** in `_grezzo/img/`, nominata
+`AAAA-MM-GG-NOME-EVENTO/`. Dentro, foto sorgente di qualsiasi tipo
+(HEIC, JPG, JPEG, PNG).
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### Pipeline automatica
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Lo script `src/build-gallery.sh` converte una cartella di `_grezzo/img/` in
+una galleria pubblicata:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+```bash
+./src/build-gallery.sh <folder_name> <YYYY-MM-DD> <slug> "<Titolo>"
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Esempio:
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+```bash
+./src/build-gallery.sh 2023-09-10-CASA-ARGILLA-PELANDA \
+                       2023-09-10 \
+                       casa-argilla-pelanda \
+                       "Casa Argilla — Pelanda"
+```
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Effetti:
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+- Converte HEIC → JPG (`sips`), copia JPG/JPEG/PNG, normalizza i nomi in
+  lowercase e l'estensione a `.jpg`.
+- Resize a max **1600 px** lato lungo, qualità 85 → `docs/assets/img/eventi/<data-slug>/full/`
+- Genera thumb a max **400 px**, qualità 80 → `docs/assets/img/eventi/<data-slug>/thumb/`
+- Crea il post `docs/_posts/<data>-<slug>.md` (non sovrascrive se esiste).
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Lo script è **idempotente**: rilanciato sulla stessa cartella, riprocessa
+solo i file mancanti. Per aggiungere foto a una galleria esistente, copiale
+in `_grezzo/img/<cartella>/` e rilancia lo stesso comando.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### Galleria nel post
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Il post generato è minimale:
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+```markdown
+---
+title: "Casa Argilla — Pelanda"
+date: 2023-09-10
+categories: [gallery]
+gallery_path: /assets/img/eventi/2023-09-10-casa-argilla-pelanda/
+---
 
-## License
-For open source projects, say how it is licensed.
+{% include gallery.html path=page.gallery_path %}
+```
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
->>>>>>> merge-gitlab
+L'include `gallery.html`:
+- scopre automaticamente le immagini in `<path>thumb/` via `site.static_files`,
+- ricostruisce l'URL del full sostituendo `/thumb/` con `/full/`,
+- rende una griglia quadrata via CSS (`aspect-ratio:1; object-fit:cover`),
+- aggancia [GLightbox](https://github.com/biati-digital/glightbox) via CDN
+  per la navigazione fullscreen (frecce, swipe, ESC).
+
+Per cambiare aspetto della griglia (rettangolare, masonry, dimensioni tile)
+basta modificare il CSS dentro l'include — **nessuna immagine va rigenerata**.
+
+### Dipendenze locali
+
+Lo script richiede:
+
+- `sips` (incluso in macOS, conversione HEIC)
+- `magick` ([ImageMagick](https://imagemagick.org/), resize)
+
+Su macOS:
+
+```bash
+brew install imagemagick
+```
+
+---
+
+## Convenzioni autori
+
+Gli autori dei post sono definiti una sola volta in `docs/_data/authors.yml`:
+
+```yaml
+Giuseppe:
+  name: Giuseppe Silvi
+  picture: /images/gs.jpg
+  bio: "..."
+```
+
+Nel front matter dei post: `author: Giuseppe` (l'id, non il nome). Il default
+globale in `_config.yml` è `Giuseppe`, quindi non serve scriverlo nei post a
+meno che l'autore non sia diverso.
+
+---
+
+## Continuità con `leap/giuseppe`
+
+ST è formalmente sotto `leap/`, ma concettualmente è un **figlio di
+giuseppe**: stesso tema (`L-E-A-P/so-leap-theme`), stesso skin, stesso logo
+(`gs.jpg`), navbar che cita LEAP e Giuseppe come prime voci. L'utente
+attraversa i due siti senza percepire un confine.
+
+---
+
+## TODO / Roadmap
+
+- [ ] Sistemare le date approssimate dei post `ston3s` e `pax-pelanda`.
+- [ ] Recuperare la cartella `2018-28-29-30-venezia` (manca il mese nel nome).
+- [ ] Documentare e popolare `src/` con i codici sorgenti dei plugin/strumenti.
+- [ ] Documentare e popolare `ref/` con il materiale di riferimento.
+- [ ] Allineare la navbar tra `giuseppe` e `st` per continuità visiva.
