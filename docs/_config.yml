@@ -18,6 +18,7 @@ title: "ST"
 description: "Strumenti d'invenzione del lavoro tetraedrico"
 baseurl: "/st"
 url: "https://www.leaphz.net"
+logo: /images/gs.jpg
 date_format: "%B %-d, %Y"
 read_time: true
 words_per_minute: 200
@@ -84,7 +85,15 @@ defaults:
   - scope:
       path: ""
     values:
-      author: Giuseppe Silvi
+      author: Giuseppe
+
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+      share: true
+      comments: true
 
   - scope:
       path: "_stone/web"

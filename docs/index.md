@@ -1,6 +1,9 @@
 ---
 title: ST
-layout: page
+layout: blog
+limit: 10
+show_excerpts: true
+entries_layout: list
 ---
 
 **ST** raccoglie gli strumenti d'invenzione del mio lavoro tetraedrico:

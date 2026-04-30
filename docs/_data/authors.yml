@@ -1,0 +1,9 @@
+Giuseppe:
+  name: Giuseppe Silvi
+  picture: /images/gs.jpg
+  twitter: "@giuseppesilvi"
+  bio: "Maestro di difesa contro le arti oscure. Inizia ad udire in età prenatale. Ascolta dall'età di 27 anni ma punta con rispetto a sentire."
+  links:
+    - title: buymeacoffee
+      url: http://buymeacoffee.com/?via=grammaton
+      icon: fas fa-coffee
