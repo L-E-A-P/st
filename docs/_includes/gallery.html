@@ -1,0 +1,29 @@
+{%- comment -%}
+Galleria fotografica auto-popolata da una cartella di static_files.
+
+Parametri:
+  path     (obbligatorio) percorso della cartella, es. /assets/img/eventi/foo/
+  credits  (opzionale)    hash filename → photographer_id (vedi _data/photographers.yml)
+{%- endcomment -%}
+
+{%- assign imgs = site.static_files | where_exp: "f", "f.path contains include.path" -%}
+<div class="gallery" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.5rem;">
+{%- for img in imgs -%}
+  {%- assign ext = img.extname | downcase -%}
+  {%- if ext == ".jpg" or ext == ".jpeg" or ext == ".webp" or ext == ".png" -%}
+    {%- assign fname = img.name -%}
+    {%- assign credit_id = include.credits[fname] -%}
+    {%- assign author = site.data.photographers[credit_id] -%}
+    <figure style="margin:0;">
+      <a href="{{ img.path | relative_url }}">
+        <img src="{{ img.path | relative_url }}" alt="{{ fname }}" loading="lazy" style="width:100%;height:auto;display:block;">
+      </a>
+      {%- if author -%}
+        <figcaption style="font-size:0.8em;opacity:0.7;">
+          ph. {% if author.url %}<a href="{{ author.url }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}
+        </figcaption>
+      {%- endif -%}
+    </figure>
+  {%- endif -%}
+{%- endfor -%}
+</div>

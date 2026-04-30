@@ -64,11 +64,8 @@ plugins:
 
 # Exclude from processing
 exclude:
-  - _grezzo
   - Gemfile
   - Gemfile.lock
-  - README.md
-  - LICENSE
 
 # Collections — one per invention-tool project
 collections:
