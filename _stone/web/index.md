@@ -1,6 +1,7 @@
 ---
 title: stone
 date: 2014-01-01
+permalink: /stone/
 excerpt: "Diffusore elettroacustico a geometria tetraedrica capace di propagazione sferica."
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: tetrarec
 date: 2014-01-01
+permalink: /tetrarec/
 excerpt: "Sistema di registrazione tetraedrica."
 ---
 

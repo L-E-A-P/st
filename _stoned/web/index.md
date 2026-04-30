@@ -1,6 +1,7 @@
 ---
 title: stoned
 date: 2023-01-01
+permalink: /stoned/
 excerpt: "Evoluzione e variazioni sul tema dello stone."
 ---
 

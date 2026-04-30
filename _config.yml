@@ -74,13 +74,13 @@ exclude:
 collections:
   stone:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:name/
   stoned:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:name/
   tetrarec:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:name/
 
 # Front Matter Defaults
 defaults:
